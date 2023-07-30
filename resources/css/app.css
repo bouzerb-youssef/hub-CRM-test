@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+ 
+  .element-center{
+    @apply flex  justify-center  items-center ;
+  }
+
+  .btn {
+    @apply  bg-[#0ebccb] hover:bg-[#8cdae4]  ;
+  }
+}
+
+body{
+    background-color: #eff5f5;
+}
+
+th {
+  text-align: left; 
+  }
+
+
+
