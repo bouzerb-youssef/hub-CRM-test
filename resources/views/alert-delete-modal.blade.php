@@ -20,7 +20,7 @@
                 </div>
                 <form  id="delete-contact-form">
                     <div class="flex justify-end  bg-[#eff5f5]">
-                        <input type="text" id="delete_contact_id">
+                        <input type="hidden" id="delete_contact_id">
                         <button type="button" class="px-4 py-2 my-3 mr-2 text-[#45505e] rounded-md border close-delete-modal-alert">Annuler</button>
                         <a href="" ><button type="button" class="px-4 py-2 my-3 mr-3 bg-[#ee4e4f] text-white rounded-md border border-[black] delete_contact">Confirmer</button></a>
                     </div>

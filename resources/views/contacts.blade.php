@@ -108,6 +108,7 @@ $imageUrlView = asset('assets/icons/eye.png');
      $(document).ready(function() {
         $('#searchInput').on('input', function() {
             const query = $(this).val();
+            
             $.ajax({
                 url: '{{route("ajax_search_contact")}}',
                 type: 'post',
@@ -135,9 +136,11 @@ $imageUrlView = asset('assets/icons/eye.png');
             } else {
                 
                 data.data.forEach(function(contact) {
-                    const row = `<tr><td class="border-t border-b p-3 text-sm w-[40%]">${contact.nom} ${contact.prenom}</td><td class="border-t border-b p-3 text-sm w-[40%]">${contact.organisation.nom}</td><td class="border-t border-b p-3 text-sm"><span${(contact.organisation.statut === 'Lead' ? ' class="px-2 bg-[#c3dcfd] rounded-lg"' : (contact.organisation.statut === 'Client' ? ' class="px-2 bg-[#b8edd6] rounded-lg"' : (contact.organisation.statut === 'Prospect' ? ' class="px-2 bg-[#fbd6ba] rounded-lg"' : '')))}>${contact.organisation.statut}</span></td><td class="border-t border-b p-3 text-sm flex gap-2"><a class="show-modal"><img src="${imageUrlView}" class="w-[20px] hover:scale-110" alt="Icon"></a><a><img src="${imageUrlEdit}" class="w-[20px] hover:scale-110" alt="Icon"></a><a><img src="${imageUrlDelete}" class="w-[20px] hover:scale-110" alt="Icon"></a></td></tr>`
-
-                    tableBody.append(row);
+                    /* const row = `<tr><td class="border-t border-b p-3 text-sm w-[40%]">${contact.nom} ${contact.prenom}</td><td class="border-t border-b p-3 text-sm w-[40%]">${contact.organisation.nom}</td><td class="border-t border-b p-3 text-sm"><span${(contact.organisation.statut === 'Lead' ? ' class="px-2 bg-[#c3dcfd] rounded-lg"' : (contact.organisation.statut === 'Client' ? ' class="px-2 bg-[#b8edd6] rounded-lg"' : (contact.organisation.statut === 'Prospect' ? ' class="px-2 bg-[#fbd6ba] rounded-lg"' : '')))}>${contact.organisation.statut}</span></td><td class="border-t border-b p-3 text-sm flex gap-2"><a class="show-modal"><img src="${imageUrlView}" class="w-[20px] hover:scale-110" alt="Icon"></a><a><img src="${imageUrlEdit}" class="w-[20px] hover:scale-110" alt="Icon"></a><a><img src="${imageUrlDelete}" class="w-[20px] hover:scale-110" alt="Icon"></a></td></tr>`
+                     */
+                    
+                            const row =`<tr><td class="border-t border-b p-3 text-sm w-[40%]">${contact.nom}${contact.prenom}</td><td class="border-t border-b p-3 text-sm w-[40%]">${contact.organisation.nom}</td><td class="border-t border-b p-3 text-sm"><span${contact.organisation.statut === 'Lead' ? 'class="px-2 bg-[#c3dcfd] rounded-lg"' : ''}${contact.organisation.statut === 'Client' ? 'class="px-2 bg-[#b8edd6] rounded-lg"' : ''}${contact.organisation.statut === 'Prospect' ? 'class="px-2 bg-[#fbd6ba] rounded-lg"' : ''}>${contact.organisation.statut}</span></td><td class="border-t border-b p-3 text-sm flex gap-2"><a class="show-modal-view view-contact-form"data-bs-toggle="model"data-bs-toggle="#view-model"data-id="${contact.id}"data-nom="${contact.nom}"data-prenom="${contact.prenom}"data-email="${contact.e_mail}"data-entreprise="${contact.organisation.nom}"data-adresse="${contact.organisation.adresse}"data-code_postal="${contact.organisation.code_postal}"data-ville="${contact.organisation.ville}"data-statut="${contact.organisation.statut}"><img src="{{ asset('assets/icons/eye.png') }}" class="w-[20px] hover:scale-110" alt="Icon"></a><a class="show-modal-update update-contact-form"data-bs-toggle="model"data-bs-toggle="#update-model"data-id="${contact.id}"data-nom="${contact.nom}"data-prenom="${contact.prenom}"data-email="${contact.e_mail}"data-entreprise="${contact.organisation.nom}"data-adresse="${contact.organisation.adresse}"data-code_postal="${contact.organisation.code_postal}"data-ville="${contact.organisation.ville}"data-statut="${contact.organisation.statut}"data-organisation_id="${contact.organisation_id}"><img src="{{ asset('assets/icons/pen.png') }}" class="w-[20px] hover:scale-110" alt="Icon"></a><a class="show-alert-delete delete-contact"data-bs-toggle="model"data-bs-toggle="#delete-alert-modal"data-id="${contact.id}"><img src="{{ asset('assets/icons/bin.png') }}" class="w-[20px] hover:scale-110" alt="Icon"></a></td></tr>`;
+                            tableBody.append(row);
                 });
             }
         }

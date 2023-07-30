@@ -30,16 +30,11 @@
            dataType: 'json', 
            success: function (response) {
              
-            if (response.success) {
+          
             
                 window.location.href = response.url;
-            } else {
-                
-                alert('Error: ' + response.error);
-                
-            }
-             
-           
+         
+
            },
            error: function ( error) {
                console.log(error.responseJSON.message)
@@ -234,6 +229,7 @@
                 $('#delete-alert-modal').removeClass('hidden');
             }
         $('.show-alert-delete ').on('click', function (event) {
+            console.log('here');
             showModal();
             let id= $(this).data('id');
            
